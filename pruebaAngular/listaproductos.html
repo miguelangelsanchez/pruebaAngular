@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/funcionalidadAngular.js"></script>
+</head>
+<body>
+    <div ng-app="moduloListaProductos">
+        <div ng-controller="inicializadorListaProductos">
+            <div ng-controller="controladorListaProductos">
+                <h2>
+                    Lista de productos
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>
+                                Nombre
+                            </td>
+                            <td>
+                                Precio
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="producto in listaProductos">
+                            <td>
+                                {{producto.nombre}}
+                            </td>
+                            <td>
+                                {{producto.precio}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                Nombre:
+                <input type="text" ng-model="nombreNuevoProducto" />
+                <input type="button" ng-click="agregarProducto()" value="Agregar producto" />
+            </div>
+            <div ng-controller="controladorFormulario" >
+                <form name="formularioUsuario" ng-submit="guardarUsuario(informacionUsuario)">
+                    <label>Primer Nombre</label>
+                    <input type="text" name="primerNombre"
+                           ng-model="informacionUsuario.primerNombre"
+                           ng-required="true"
+                           ng-minlength="2" />
+                    <span class="mensajeError" ng-show="formularioUsuario.primerNombre.$dirty && formularioUsuario.primerNombre.$error.required">
+                        debe introducir un primer nombre
+                    </span>
+                    <span class="mensajeError" ng-show="formularioUsuario.primerNombre.$dirty && formularioUsuario.primerNombre.$error.minlength">
+                        el primer nombre no tiene la longitud necesaria
+                    </span>
+                    <br /><br />
+                    <label>Segundo Nombre</label>
+                    <input type="text" name="segundoNombre"
+                           ng-model="informacionUsuario.segundoNombre"
+                           ng-required="true"
+                           ng-minlength="2" />
+                    <span class="mensajeError" ng-show="formularioUsuario.segundoNombre.$dirty && formularioUsuario.segundoNombre.$error.required">
+                        debe introducir un segundo nombre
+                    </span>
+                    <span class="mensajeError" ng-show="formularioUsuario.segundoNombre.$dirty && formularioUsuario.segundoNombre.$error.minlength">
+                        el segundo nombre no tiene la longitud necesaria
+                    </span>
+                    <br />
+                    <label>
+                        Subscribir
+                    </label>
+                    <input type="checkbox" name="subscribir" ng-model="informacionUsuario.subscribir"
+                           ng-true-value="'subscribir'"
+                           ng-false-value="'no subscribir'" />
+                    <br /><br />
+                    <label>Metodo de entrega</label>
+                    <select name="metodoEntrega" ng-model="informacionUsuario.metodoEntrega" ng-required="true">
+                        <option value="correo">correo</option>
+                        <option value="telefono">telefono</option>
+                    </select>
+                    <br /><br />
+                    <input type="submit" value="Guardar" ng-disabled="formularioUsuario.$invalid" />
+                    <br /><br />
+                    <ul>
+                        <li ng-repeat="elemento in usuarios">
+                            {{ 'Primer Nombre: ' + elemento.primerNombre + ' Segundo Nombre: ' + elemento.segundoNombre  + ' Subscribir: ' + elemento.subscribir + ' Metodo Entrega: ' + elemento.metodoEntrega }}
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div ng-controller="controladorHeroes">
+            <label>Heroe a buscar</label>
+            <input type="text" ng-model="nombreHeroeBuscar" />
+            <br /><br />
+            <button ng-click="obtenerDatosHeroe()">Enviar</button>
+            {{datosHeroe}}
+            <br /><br />
+            <label>Heroe:</label>
+            <input type="text" ng-model="nombreHeroe" />
+            <br />
+            <label>Nombre Real:</label>
+            <input type="text" ng-model="nombreReal" />
+            <br />
+            <button ng-click="agregarDatosHeroe(nombreHeroe,nombreReal)">Agregar</button>
+        </div>
+    </div>
+</body>
+</html>

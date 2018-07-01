@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/prueba1.js"></script>
+    <script src="Scripts/otrosScripts.js"></script>
+</head>
+<body>
+    <div ng-app="aplicacion1">
+        <div ng-controller="inicializador">
+            <span>Valores:</span>
+            <input type="text" ng-model="primer" />
+            <input type="text" ng-model="segundo" />
+            <br />
+
+            <div ng-controller="controlador1">
+                <button ng-click="sumarValores()">Sumar</button>
+                <br />
+                <br />
+                {{calculoSuma}}
+            </div>
+            <br />
+            <div ng-controller="controlador2">
+                <button ng-click="restarValores()">Restar</button>
+                <br />
+                <br />
+                {{calculoResta}}
+            </div>
+            <span>tu primer valor es: {{primer}}</span>
+            <span>tu primer segundo valor es: <span ng-bind="segundo"></span></span>
+            <br />
+            <br />
+            <div ng-controller="controladorListas">
+                <h1>
+                    Lista ciudades
+                </h1>
+                <br />
+                <input type="checkbox" ng-model="mostrarListaOrdenada" />Mostrar lista ordenada
+                <br />
+                <ng-include src="obtenerLista()">
+                </ng-include>
+            </div>
+            <br />
+            <div ng-controller="controladorFuncionesExternas">
+                <span>Valores Experimentales:</span>
+                <input type="text" ng-model="procesadoPrimerDato" />
+                <input type="text" ng-model="procesadoSegundoDato" />
+            </div>
+
+            <div ng-controller="controladorEventoSaludo">
+                <input type="checkbox" ng-model="mostrarSaludoMananero" />Mostrar Saludo Mañanero
+                <br />
+                <span ng-show="mostrarSaludoMananero">Hola Buenos Días</span>
+                <span ng-show="!mostrarSaludoMananero">Hola Buenas Noches</span>
+
+            </div>
+
+            <div ng-controller="controladorSelect" >
+                <select ng-model="sexo" >
+                    <option value="Macho" >opcion 1 Macho</option>
+                    <option value="Hembra">opcion 2 Hembra</option>
+                </select>
+                <br />
+                <div>
+                    {{sexo}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
